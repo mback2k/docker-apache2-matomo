@@ -28,8 +28,13 @@ RUN mv /var/www/matomo/matomo.js /var/www/matomo/config/matomo.js
 RUN ln -s /var/www/matomo/config/matomo.js /var/www/matomo/matomo.js
 
 RUN chown www-data:www-data -R /var/www/matomo/config
+RUN cp -ar /var/www/matomo/config -T /var/cache/matomo-config-dist
 VOLUME /var/www/matomo/config
 
+ENV MATOMO_CONFIG_DIR /var/www/matomo/config
+ENV MATOMO_CONFIG_DIST_DIR /var/cache/matomo-config-dist
+
+ADD docker-entrypoint.d/ /run/docker-entrypoint.d/
 ADD docker-websites.d/ /run/docker-websites.d/
 
 HEALTHCHECK CMD killall -0 run-parts || curl -f http://localhost/matomo.php || exit 1
