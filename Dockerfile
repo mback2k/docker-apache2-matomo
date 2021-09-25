@@ -1,4 +1,4 @@
-FROM mback2k/apache2-php
+FROM ghcr.io/mback2k/docker-apache2-php:latest
 
 ARG PHP_VERSION=7.2
 
