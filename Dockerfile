@@ -16,7 +16,7 @@ RUN a2enmod rewrite headers env setenvif
 RUN mkdir -p /var/www
 WORKDIR /var/www
 
-ARG MATOMO_VERSION=3.13.4
+ARG MATOMO_VERSION=3.14.1
 
 ADD https://builds.matomo.org/matomo-${MATOMO_VERSION}.zip /var/www
 RUN unzip matomo-${MATOMO_VERSION}.zip
